@@ -5,11 +5,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AddressBook.Models 
+namespace AddressBook.Models
 {
-    public class Contact : IdentityUser
+    public class Contact 
     {
-        
+        public int Id { get; set; }
+
+        public string UserId { get; set; }
 
         [Required]
         [StringLength(50, ErrorMessage = "the {0} must be at least {2}) and at max {1} characters long.", MinimumLength = 2)]
@@ -26,9 +28,9 @@ namespace AddressBook.Models
         [Display(Name = "E-mail")]
         public string PersonalEmail { get; set; }
 
-       
+
         [EmailAddress]
-        [Display(Name = "E-mail")]
+        [Display(Name = "Work E-mail(optional)")]
         public string WorkEmail { get; set; }
 
 
@@ -36,11 +38,11 @@ namespace AddressBook.Models
         [Phone]
         [Display(Name = "Phone Number")]
         public string MobileNum { get; set; }
-    
+
         [Phone]
         [Display(Name = "Home Number(optional)")]
         public string HomeNum { get; set; }
-      
+
         [Phone]
         [Display(Name = "Work Number(optional)")]
         public string WorkNum { get; set; }
@@ -51,7 +53,7 @@ namespace AddressBook.Models
         [Display(Name = "Address")]
         public string Address1 { get; set; }
 
-        
+
         [StringLength(100, ErrorMessage = "the {0} must be at least {2}) and at max {1} characters long.", MinimumLength = 10)]
         [Display(Name = "Secondary Address(optional)")]
         public string Address2 { get; set; }
@@ -59,7 +61,7 @@ namespace AddressBook.Models
         [Required(ErrorMessage = "A City is required.")]
         [StringLength(70, ErrorMessage = "the {0} must be at least {2}) and at max {1} characters long.", MinimumLength = 2)]
         public string City { get; set; }
-       
+
         [Required(ErrorMessage = "A State is required.")]
         [StringLength(70, ErrorMessage = "the {0} must be at least {2}) and at max {1} characters long.", MinimumLength = 2)]
         public string State { get; set; }
@@ -70,9 +72,15 @@ namespace AddressBook.Models
         public string Zip { get; set; }
 
         [StringLength(80, ErrorMessage = "the {0} must be at least {2}) and at max {1} characters long.", MinimumLength = 3)]
-        [Display(Name = "Zipcode")]
-        public string Company{ get; set; }
+        [Display(Name = "Company(optional)")]
+        public string Company { get; set; }
 
-        
+        [StringLength(80, ErrorMessage = "the {0} must be at least {2}) and at max {1} characters long.", MinimumLength = 3)]
+        [Display(Name = "Fax Number(optional)")]
+        public string FaxNum{ get; set; }
+
 
     }
+}
+
+

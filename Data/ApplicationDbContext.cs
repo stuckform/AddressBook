@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using AddressBook.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,8 @@ namespace AddressBook.Data
             : base(options)
         {
         }
+        public DbSet<AddressBook.Models.Contact> Contact { get; set; }
+    
+           
     }
 }
