@@ -35,7 +35,7 @@ namespace AddressBook.Controllers
 
            return View(contact);
         }
-
+        [Authorize]
         // GET: Contacts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -53,13 +53,13 @@ namespace AddressBook.Controllers
 
             return View(contact);
         }
-
+        [Authorize]
         // GET: Contacts/Create
         public IActionResult Create()
         {
             return View();
         }
-
+        [Authorize]
         // POST: Contacts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -76,7 +76,7 @@ namespace AddressBook.Controllers
             }
             return View(contact);
         }
-
+        [Authorize]
         // GET: Contacts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -92,7 +92,7 @@ namespace AddressBook.Controllers
             }
             return View(contact);
         }
-
+        [Authorize]
         // POST: Contacts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -127,7 +127,7 @@ namespace AddressBook.Controllers
             }
             return View(contact);
         }
-
+        [Authorize]
         // GET: Contacts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -145,7 +145,7 @@ namespace AddressBook.Controllers
 
             return View(contact);
         }
-
+        [Authorize]
         // POST: Contacts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
