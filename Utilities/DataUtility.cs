@@ -66,5 +66,54 @@ namespace AddressBook.Utilities
             //This is the programmict equivalent to Update-Database       
             await dbContextSvc.Database.MigrateAsync();
         }
+
+        private static async Task SeedRolesAsync(RoleManager<IdentityRole> roleSvc)
+
+        {
+            //write the code to seed a few Roles
+            //Call upon the roleSvc to add a new Role
+            await roleSvc.CreateAsync(new IdentityRole("Administrator"));
+            await roleSvc.CreateAsync(new IdentityRole("Moderator"));
+
+        }
+
+        private static async Task SeedUsersAsync(UserManager<IdentityUser> userManagerSvc)
+        {
+            //Write the code to see a few Users
+            //Step 1: Create yourself as a user
+            var adminUser = new IdentityUser()
+            {
+                Email = "Coppinger.dev@gmail.com",
+                UserName = "Coppinger.dev@gmail.com",            
+                EmailConfirmed = true
+            };
+
+            await userManagerSvc.CreateAsync(adminUser, "Num1811418!");
+
+            //Step 2 : Create Someone else as a user
+            var modUser = new IdentityUser()
+            {
+                Email = "Mod@mail.com",
+                UserName = "Mod@mail.com",
+                EmailConfirmed = true
+            };
+
+            await userManagerSvc.CreateAsync(modUser, "Abc&123!");
+        }
+
+        private static async Task AssignRolesAsync(UserManager<IdentityUser> userManagerSvc)
+        {
+            //Step 1: Somehow get a reference to the Coppinger.dev user
+            var adminUser = await userManagerSvc.FindByEmailAsync("Coppinger.dev@gmail.com");
+
+            //Step 2: Assign the adminUser to the Administrator role
+            await userManagerSvc.AddToRoleAsync(adminUser, "Administrator");
+
+            //Step 3: step 1 and 2 again but for moderator
+            var modUser = await userManagerSvc.FindByEmailAsync("Mod@mail.com");
+            await userManagerSvc.AddToRoleAsync(modUser, "Moderator");
+        }
+
+
     }
 }
